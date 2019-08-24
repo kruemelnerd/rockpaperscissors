@@ -193,12 +193,3 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,maven,eclipse,intellij,java-web
-.gitignore
-.idea/$PRODUCT_WORKSPACE_FILE$
-.idea/.gitignore
-.idea/compiler.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/vcs.xml
-pom.xml
-src/
