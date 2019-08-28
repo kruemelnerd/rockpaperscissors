@@ -1,12 +1,10 @@
 package de.devk.dojo.rockpaperscissors.server.controller;
 
-import java.util.List;
-
-import de.devk.dojo.rockpaperscissors.model.Client;
+import de.devk.dojo.rockpaperscissors.model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.devk.dojo.rockpaperscissors.model.Player;
+import java.util.List;
 
 @Service
 public class GameService {
@@ -14,12 +12,8 @@ public class GameService {
     @Autowired
     PlayerRepository playerRepository;
 
-    @Autowired
-    ClientRepository clientRepository;
-
-    public GameService(PlayerRepository playerRepository, ClientRepository clientRepository) {
+    public GameService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
-        this.clientRepository = clientRepository;
     }
 
     public List<Player> findAllPlayers() {
@@ -28,9 +22,5 @@ public class GameService {
 
     public Player savePlayer(Player player) {
         return playerRepository.save(player);
-    }
-
-    public Client saveClient(Client client) {
-        return clientRepository.save(client);
     }
 }

@@ -1,6 +1,5 @@
 package de.devk.dojo.rockpaperscissors.server.controller;
 
-import de.devk.dojo.rockpaperscissors.model.Client;
 import de.devk.dojo.rockpaperscissors.model.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -18,8 +17,6 @@ public class GameServiceTest {
     @Autowired
     private PlayerRepository playerRepository;
 
-    @Autowired
-    private ClientRepository clientRepository;
 
     @AfterEach
     void tearDown(){
@@ -30,7 +27,7 @@ public class GameServiceTest {
     void getAllPlayers() {
         Player expectedPlayer = new Player("Philipp");
         playerRepository.save(expectedPlayer);
-        GameService gameService = new GameService(playerRepository, null);
+        GameService gameService = new GameService(playerRepository);
 
         List<Player> allPlayers = gameService.findAllPlayers();
         Player lastPlayer = allPlayers.get(0);
@@ -41,7 +38,7 @@ public class GameServiceTest {
 
     @Test
     void saveAPlayer() {
-        GameService service = new GameService(playerRepository, null);
+        GameService service = new GameService(playerRepository);
         Player player = new Player("Philipp Test");
 
         service.savePlayer(player);
@@ -49,11 +46,4 @@ public class GameServiceTest {
         assertThat(playerRepository.count(), is(1L));
     }
 
-    @Test
-    void saveAClient(){
-        GameService service = new GameService(null, clientRepository);
-        Client client = new Client("Client Name", 123L);
-        service.saveClient(client);
-        assertThat(clientRepository.count(), is(1L));
-    }
 }
