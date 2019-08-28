@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @SpringBootTest
-public class ClientServiceTest {
+class ClientServiceTest {
 
     @Autowired
     private ClientRepository clientRepository;
@@ -23,8 +23,12 @@ public class ClientServiceTest {
     @Test
     void saveAClient() {
         ClientService service = new ClientService(clientRepository);
-        Client client = new Client("Client Name", 123L);
-        service.saveClient(client);
+        Client client = new Client("Client Name", 123456789L);
+        Client saveClient = service.saveClient(client);
         assertThat(clientRepository.count(), is(1L));
+        assertThat(saveClient.getRegistrationCode(), is(client.getRegistrationCode()));
+        assertThat(saveClient.getName(), is(client.getName()));
     }
+
+
 }

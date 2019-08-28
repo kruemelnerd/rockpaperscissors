@@ -18,15 +18,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-/**
- * Created based with this tutorial:
- * https://medium.com/@sheikarbaz5/spring-boot-with-tdd-test-driven-development-part-i-be1b90da51e
- *
- * @author hv11156
- */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class ClientControllerTest {
+class ClientControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -48,4 +42,6 @@ public class ClientControllerTest {
         result.andExpect(status().isCreated()).andExpect(jsonPath("$.name").value(client.getName()))
                 .andExpect(jsonPath("$.registrationCode").value(client.getRegistrationCode()));
     }
+
+
 }
